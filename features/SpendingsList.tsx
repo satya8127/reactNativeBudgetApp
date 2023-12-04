@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/rootReducer';
 import { useIsFocused } from '@react-navigation/native';
 import { clearBudget } from './redux/budgetSlice';
-// import EditBudgetItem from './EditBudgetItem';
+
 
 interface BudgetItem {
   id: number;
@@ -79,8 +79,6 @@ const BudgetList: React.FC<{ navigation: any }> = ({ navigation }) => {
       
 
       <View style={styles.summary}>
-        <Text style={styles.summaryText}> Total Budget Alloted: ₹{planned_sum}</Text>
-        <Text style={styles.summaryText}>Budget Used: ₹{actual_sum}</Text>
         <Text style={[styles.savingBalance, { color: savingColor }]}>
           SAVEINGS : ₹{saving_balance}
         </Text>

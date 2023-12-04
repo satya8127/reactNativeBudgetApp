@@ -7,7 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'; // Import icon library
 import { Provider, useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { addToBudget } from './features/redux/budgetSlice';
@@ -17,10 +16,6 @@ type BudgetItem = {
   category: string;
   alloted_amount: string;
   used_amount: string;
-};
-
-type TabIconProps = {
-  color: string; // Specify the type for color
 };
 
 type RootStackParamList = {
@@ -43,9 +38,6 @@ const TabNavigator: React.FC = () => (
       component={BudgetEntry}
       options={{
         tabBarLabel: 'Add',
-        // tabBarIcon: ({ color }: TabIconProps) => (
-        //   <MaterialCommunityIcons name="plus" color={color} size={26} />
-        // ),
       }}
     />
     <Tab.Screen
@@ -53,9 +45,6 @@ const TabNavigator: React.FC = () => (
       component={BudgetList}
       options={{
          tabBarLabel: 'View',
-        // tabBarIcon: ({ color }: TabIconProps) => (
-        //   <MaterialCommunityIcons name="format-list-bulleted" color={color} size={26} />
-        // ),
       }}
     />
   </Tab.Navigator>
@@ -72,7 +61,7 @@ const App: React.FC = () => {
 
           // Dispatch your existing actions with the loaded data
           parsedData.forEach((item: BudgetItem) => {
-            dispatch(addToBudget(item)); // Assuming addToBudget is your action creator
+            dispatch(addToBudget(item)); 
           });
         }
       } catch (error) {

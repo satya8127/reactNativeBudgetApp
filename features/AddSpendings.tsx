@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addToBudget } from './redux/budgetSlice';
 
 interface BudgetEntryProps {
-  navigation: any; // Replace 'any' with the actual type of your navigation prop
+  navigation: any; 
 }
 interface DropdownItemProps {
   label: string;
@@ -21,7 +21,7 @@ const BudgetEntry: React.FC<BudgetEntryProps> = ({ navigation }) => {
     { label: 'Food', value: 'Food' },
   ];
 
-  const [itemValue, setItemValue] = useState<string | null>(null);
+  const [itemValue, setItemValue] = useState<string>('');
   const [allotedAmount, setPlannedAmount] = useState<string>('');
   const [usedAmount, setActualAmount] = useState<string>('');
   
@@ -45,13 +45,6 @@ const BudgetEntry: React.FC<BudgetEntryProps> = ({ navigation }) => {
     setPlannedAmount('');
     navigation.navigate('BudgetList');
   }
-
-  const clearForm = () => {
-    setItemValue('');
-    setActualAmount('');
-    setPlannedAmount('');
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -65,27 +58,19 @@ const BudgetEntry: React.FC<BudgetEntryProps> = ({ navigation }) => {
       />
       <View style={styles.inputContainer}>
         <Text style={styles.txt}>Select Items</Text>
-        <Dropdown
+        <TextInput
           style={styles.input}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          data={budgetCategoryData}
-          search
-          maxHeight={250}
-          labelField="label"
-          valueField="value"
+        
+         
           value={itemValue}
-          placeholder='select'
-          // searchPlaceholder="Search..."
-          onChange={(item) => {
-            setItemValue(item?.value || null);
-          }}
+          onChangeText={(text) => setItemValue(text)}
+          clearButtonMode='always'
         />
 
         <Text style={styles.txt}>Alloted Amount</Text>
         <TextInput
           style={styles.input}
-          // placeholder='Planned - Amount'
+        
           keyboardType='number-pad'
           value={allotedAmount}
           onChangeText={(text) => setPlannedAmount(text)}
@@ -95,7 +80,7 @@ const BudgetEntry: React.FC<BudgetEntryProps> = ({ navigation }) => {
         <Text style={styles.txt}>Used Amount</Text>
         <TextInput
           style={styles.input}
-          // placeholder='Actual-Amount'
+        
           keyboardType='number-pad'
           value={usedAmount}
           onChangeText={(text) => setActualAmount(text)}
@@ -104,7 +89,6 @@ const BudgetEntry: React.FC<BudgetEntryProps> = ({ navigation }) => {
       </View>
       <View style={styles.btn}>
         <Button  title='Save' onPress={() => addBudget()} />
-        {/* <Button title='Clear' color={'red'} onPress={() => clearForm()} /> */}
       </View>
     </View>
   );
@@ -146,13 +130,6 @@ borderRadius:60
     borderRadius: 200 / 2,
     alignSelf: 'center',
   },
-  // card: {
-  
-  //   borderRadius: 0,
-  //   flexDirection: 'row',
-  //   justifyContent: 'center',
-  //   width: '100%',
-  // },
   card: {
     backgroundColor: 'turquoise',
     borderRadius: 10,

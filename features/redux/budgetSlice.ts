@@ -7,7 +7,7 @@ interface BudgetItem {
   category: string;
   alloted_amount: string;
   used_amount: string;
-  // Add other properties as needed
+  
 }
 
 interface BudgetState {

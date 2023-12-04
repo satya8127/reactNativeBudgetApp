@@ -19,7 +19,7 @@ interface EditBudgetItemProps {
 const EditBudgetItem: React.FC<EditBudgetItemProps> = ({ route, navigation }) => {
   const { isEdit, itemToEdit } = route.params || { isEdit: false, itemToEdit: { id: 0, category: '', planned_amount: '0', actual_amount: '0' } };
   const [editedItem, setEditedItem] = useState<BudgetItem>(itemToEdit);
-  const dispatch: Dispatch<AnyAction> = useDispatch(); // Adjust the type of dispatch
+  const dispatch: Dispatch<AnyAction> = useDispatch(); 
 
   const handleSave = () => {
     dispatch(updateBudgetItem(editedItem)); // Dispatch the updateBudgetItem action
